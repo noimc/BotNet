@@ -22,12 +22,9 @@ echo ""
 PACKAGE="gói cần tải"
 echo "Đang cài đặt $PACKAGE..."
 apt -y update -o=Dpkg::Progress-Fancy=1 -qq && apt -y install wget -o=Dpkg::Progress-Fancy=1 -qq && apt -y install -o=Dpkg::Progress-Fancy=1 -qq && apt -y install openjdk-21-jdk -o=Dpkg::Progress-Fancy=1 -qq
-wget --progress=bar:force -q https://raw.githubusercontent.com/noimc/BotNet/refs/heads/main/index.js
-wget --progress=bar:force -q https://github.com/noimc/BotNet/raw/refs/heads/main/Botnet.jar
-wget --progress=bar:force -q https://raw.githubusercontent.com/noimc/BotNet/refs/heads/main/proxies.txt
-wget --progress=bar:force -q https://github.com/noimc/BotNet/raw/refs/heads/main/public.zip
-unzip public.zip
-rm public.zip
+wget --progress=bar:force -q https://github.com/noimc/BotNet/releases/download/Botnet/BotNet.zip
+unzip BotNet.zip
+rm Botnet.zip
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 \. "$HOME/.nvm/nvm.sh"
 nvm install 22
