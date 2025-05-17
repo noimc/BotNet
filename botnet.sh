@@ -4,7 +4,7 @@ F_BOLD="\033[1m"
 C_DODGERBLUE1="\033[48;5;33m"
 echo -e "${F_BOLD}${C_DODGERBLUE1}Ｂｏｔｎｅｔ － Ｎｏｉ ＭＣ${NO_FORMAT}"
 echo ""
-read -p "Bạn có muốn tiếp tục? (y/n): (Yêu cầu có Root/Administrator)" choice
+read -p "Bạn có muốn tiếp tục? (y/n): (Yêu cầu có Root/Administrator) " choice
 if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
     echo "Tiếp tục..."
     # Đặt lệnh tiếp theo tại đây
@@ -25,11 +25,14 @@ apt -y update -o=Dpkg::Progress-Fancy=1 -qq && apt -y install wget -o=Dpkg::Prog
 wget --progress=bar:force -q https://raw.githubusercontent.com/noimc/BotNet/refs/heads/main/index.js
 wget --progress=bar:force -q https://github.com/noimc/BotNet/raw/refs/heads/main/Botnet.jar
 wget --progress=bar:force -q https://raw.githubusercontent.com/noimc/BotNet/refs/heads/main/proxies.txt
+wget --progress=bar:force -q https://github.com/noimc/BotNet/raw/refs/heads/main/public.zip
+unzip public.zip
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 \. "$HOME/.nvm/nvm.sh"
 nvm install 22
 node -v
 nvm current
+npm install express body-parser
 
 clear
 NO_FORMAT="\033[0m"
