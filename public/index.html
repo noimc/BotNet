@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Omlet Botnet Launcher</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --main-bg: #1e1e2f;
+      --accent: #ff5f5f;
+      --text-color: #fff;
+      --input-bg: #2e2e3e;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--main-bg);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #29293d;
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 25px rgba(255, 95, 95, 0.4);
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 10px;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+      font-size: 16px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus, select:focus {
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #ff5f5f, #ff995f);
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #ff5f5f;
+    }
+
+    #result {
+      margin-top: 20px;
+      white-space: pre-wrap;
+      background: #1c1c2c;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #ccc;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🚀 Omlet Botnet Launcher</h2>
+    <form id="commandForm">
+      <label for="host">Host</label>
+      <input type="text" id="host" placeholder="VD: 127.0.0.1" required />
+
+      <label for="port">Port</label>
+      <input type="text" id="port" placeholder="VD: 25565" required />
+
+      <label for="method">Phương thức</label>
+      <select id="method" required>
+        <option value="botjoiner">Botjoiner</option>
+        <option value="tcphit">TCP Hit</option>
+      </select>
+
+      <button type="submit">🎯 Gửi lệnh</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    document.getElementById('commandForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const host = document.getElementById('host').value;
+      const port = document.getElementById('port').value;
+      const method = document.getElementById('method').value;
+
+      const res = await fetch('/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ host, port, method }),
+      });
+
+      const text = await res.text();
+      document.getElementById('result').innerText = text;
+    });
+  </script>
+</body>
+</html>
