@@ -27,6 +27,7 @@ wget --progress=bar:force -q https://github.com/noimc/BotNet/raw/refs/heads/main
 wget --progress=bar:force -q https://raw.githubusercontent.com/noimc/BotNet/refs/heads/main/proxies.txt
 wget --progress=bar:force -q https://github.com/noimc/BotNet/raw/refs/heads/main/public.zip
 unzip public.zip
+rm public.zip
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 \. "$HOME/.nvm/nvm.sh"
 nvm install 22
